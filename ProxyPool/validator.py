@@ -11,6 +11,7 @@ import requests
 from ua import RandomHeader
 from config import VALIDATE_CONFIG
 from lxml import etree
+import sys
 
 requests.packages.urllib3.disable_warnings()
 rh = RandomHeader()

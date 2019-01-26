@@ -3,6 +3,7 @@ import requests
 import json
 import re
 from lxml import etree
+import sys
 
 
 class Crawl(object):
@@ -16,6 +17,8 @@ class Crawl(object):
             # print 'Use proxy:', proxies
             r = requests.get(url, headers=self.headers, proxies=proxies, timeout=6)
         else:
+            # 使用本地请求
+            print "local request, no use proxy"
             r = requests.get(url, headers=self.headers, timeout=6)
         price = r.text
         if price == 'skuids input error\n':  # 防止瞎填商品ID导致无法继续爬
@@ -33,6 +36,7 @@ class Crawl(object):
             # print 'Use proxy:', proxies
             r = requests.get(url, headers=self.headers, proxies=proxies, timeout=6)
         else:
+            print "local request, no use proxy"
             r = requests.get(url, headers=self.headers, timeout=6)
         selector = etree.HTML(r.text)
         name = selector.xpath("//*[@class='sku-name']/text()")  # list

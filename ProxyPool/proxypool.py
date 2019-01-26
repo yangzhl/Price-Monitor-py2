@@ -11,6 +11,7 @@ from config import DB_CONFIG, PROXYPOOL_CONFIG, API_CONFIG
 from crawler import Crawler
 from validator import Validator
 from api import ProxyServer
+import sys
 
 
 class ProxyPool:

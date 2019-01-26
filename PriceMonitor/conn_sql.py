@@ -159,6 +159,7 @@ class ItemQuery(object):
             try:
                 r = requests.get(url, timeout=5)
                 js = json.loads(r.text)
+
                 proxies_inner = {
                     'http': 'http://' + js[0],
                     'https': 'https://' + js[0],
@@ -266,9 +267,11 @@ if __name__ == '__main__':
     itemquery = ItemQuery()
     itemquery.start_monitor(5)
     '''
-    local_dir = path.dirname(__file__)
-    local_dir = os.path.dirname(local_dir)
-    local_dir = os.path.dirname(local_dir)
+    cwd=os.getcwd()
+    #local_dir = os.path.dirname(__file__)
+    #print os.path.abspath(__file__)
+    local_dir = os.path.dirname(os.path.abspath(__file__))
+    print local_dir
     conn = sqlite3.connect(os.path.join(local_dir, 'app.db'))
     cursor = conn.cursor()
     cursor.execute('select item_id, user_id, mall_id from monitor where status=1')
